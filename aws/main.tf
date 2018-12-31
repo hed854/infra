@@ -1,8 +1,10 @@
 variable "credentials_file" {}
-variable "credntials_profile" {}
+variable "credentials_profile" {}
 variable "region" {}
 variable "public_key" {}
 variable "project_name" {}
+variable "project_user" {}
+variable "project_password" {}
 
 provider "aws" {
 	region = "${var.region}"
@@ -27,6 +29,7 @@ resource aws_db_instance "postgres" {
 	engine = "postgres"
 	allocated_storage = 20
 	instance_class = "db.t2.small"
+	publicly_accessible = true
 	name = "${var.project_name}"
 	username = "${var.project_user}"
 	password = "${var.project_password}"
